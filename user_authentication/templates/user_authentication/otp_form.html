@@ -1,0 +1,32 @@
+{% extends 'user_authentication/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+{% if messages %}
+{% for m in messages %}
+    <div {% if m.tags %} class="{{m.tags}}" {% endif %}><small >{{m}}</small></div>
+{% endfor %}
+{% endif %}
+
+
+<form style="width: 30%; margin: auto" action="" method="post" novalidate>
+    <h1>Enter OTP for confirmation</h1>
+        {% csrf_token %} 
+
+            {% if form.non_field_errors %}
+                {% for er in form.non_field_errors %}
+                <p style="color: red;">{{er}}</p>
+                {% endfor %}
+            {% endif %} 
+
+            <!--{{form|crispy}}--> 
+            {% for fm in form %}
+            {{fm.label_tag}} {{fm}} <p style="color: red;">{{fm.errors|striptags}}</p> 
+            {% endfor %}
+        <button class="btn btn-warning" type="submit">Submit</button>
+        <a class="btn btn-danger" href="{% url 'send-otp-email' %}">Resend OTP</a></small>
+</form>
+
+{% endblock  %}

@@ -1,0 +1,35 @@
+{% extends 'user_authentication/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+
+<style>
+  .about-content {
+    text-align: center;
+    padding: 50px;
+  }
+
+  .about-heading {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .about-description {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="about-content">
+  <h1 class="about-heading">About SA Library</h1>
+  <h3 class="about-description">SA Library is a place where you can explore a wide collection of books for free. We believe in promoting knowledge and reading habits among people. Our mission is to make books accessible to everyone and encourage a love for reading.</h3>
+  <h3 class="about-description">Whether you're a student, a professional, or simply a book lover, SA Library has something for everyone. From classic literature to modern bestsellers, you'll find a diverse range of books to enrich your reading experience.</h3>
+  <h3 class="about-description">Join us today and embark on a journey of discovery through the fascinating world of books!</h3>
+</div>
+
+{% endblock %}

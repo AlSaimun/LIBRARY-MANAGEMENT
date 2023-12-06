@@ -1,0 +1,61 @@
+{% extends 'user_authentication/base.html' %}
+
+{% block style %}
+.container {
+  display: flex;
+  justify-content: center;
+  height: 18vh;
+}
+.Wellcome-rule{
+  text-align: center;
+  margin-top: 50px;
+  color : #d95515;
+}
+.rules-content{
+  left: 20px;
+  text-align: center;
+}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% if user.is_authenticated %}
+  <h1 class="text-success">Welcome, {{ name }}</h1>
+
+</div>
+<div class="rules-content">
+  <h1 class="text-warning">Features</h1><br>
+  <div class="rule">
+    <h4 class="text-decoration-underline"> User</h4>
+    <p>Login, SignUp and log out button in nav bar</p>
+  </div>
+  <div class="rule">
+    <h4 class="text-decoration-underline"> Books :</h4>
+    <p>You can see all books of library</p>
+    <p>You can see number of copies of book on the card top right corner</p>
+  </div>
+  <div class="rule">
+    <h4 class="text-decoration-underline"> More</h4>
+    <p>There are Three link rules, content and services</p>
+  </div>
+  <div class="rule">
+    <h4 class="text-decoration-underline"> Profile</h4>
+    <p>Profile button on the top left side</p>
+    <p>Your can chage userdata, see borrowed books</p>
+    <p>Your can see wish list</p>
+  </div>
+  <div class="rule">
+    <h4 class="text-decoration-underline">Search Books:</h4>
+    <p>for search book you need to push search button</p>
+    <p>Then search button will shown by the side of button</p>
+    <p>You can search by book title or genre</p>
+  </div>
+  {% else %}    
+  <h1 class="Wellcome-rule">Hi, This is SA. Library. Here we provide books for free for some days.<br>
+    If you want to join us, please login or sign up.</h1>
+  {% endif %}
+</div>
+<br>
+
+
+{% endblock %}

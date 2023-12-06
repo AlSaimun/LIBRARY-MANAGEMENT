@@ -1,0 +1,24 @@
+{% extends 'user_authentication/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<form style="width: 30%; margin: auto" action="" method="post" novalidate>
+    <h1>Register Account</h1>
+    {% csrf_token %} 
+    {% if form.non_field_errors %}
+    {% for er in form.non_field_errors %}
+    <p style="color: red;">{{er}}</p>
+    {% endfor %}
+    {% endif %} 
+            <!--{{form|crispy}}--> 
+            {% for fm in form %}
+            {{fm.label_tag}} {{fm}} <p style="color: red;">{{fm.errors|striptags}}</p>
+            {% endfor %}
+    <small class="fw-bold">Already have an account?</small> <a href="{% url 'login' %}">Log in</a>
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button> 
+    </form>
+    <br>
+{% endblock  %}

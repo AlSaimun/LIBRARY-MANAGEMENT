@@ -1,0 +1,62 @@
+{% extends 'user_authentication/base.html' %}
+
+{% block style %}
+
+<style>
+  .rules-content {
+    text-align: center;
+    padding: 50px;
+  }
+
+  .rules-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .rule {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="rules-content">
+  <h1 class="rules-heading text-center">Library Rules</h1>
+  <div class="rule">
+    <span class="badge bg-primary">1</span>
+    <span>Membership:</span>
+    <p>Membership is required to borrow books from the library. You can sign up for free and become a member.</p>
+  </div>
+  <div class="rule">
+    <span class="badge bg-primary">2</span>
+    <span>Borrowing :</span>
+    <p>You can borrow book there are no limit. but you cant borrow same book and we borrow a book for 15 days.</p>
+  </div>
+  <div class="rule">
+    <span class="badge bg-primary">3</span>
+    <span>Return Period:</span>
+    <p>The standard return period for borrowed books is 15 days. After that, a fine will be charged for each overdue day.</p>
+  </div>
+  <div class="rule">
+    <span class="badge bg-primary">4</span>
+    <span>Fine:</span>
+    <p>A fine will be charged for late book returns. The fine amount is Five TAKA per day.</p>
+  </div>
+  <div class="rule">
+    <span class="badge bg-primary">6</span>
+    <span>Damaged Books:</span>
+    <p>If a book is returned in damaged condition, the member will be charged for its repair or replacement.</p>
+  </div>
+  <div class="rule">
+    <span class="badge bg-primary">7</span>
+    <span>Lost Books:</span>
+    <p>If a book is lost, the member will be responsible for the cost of the book.</p>
+  </div>
+</div>
+
+{% endblock %}

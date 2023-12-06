@@ -1,0 +1,31 @@
+{% extends 'user_authentication/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+
+{% endblock  %}
+
+{% block content %}
+{% comment %} Message print {% endcomment %}
+    {% if messages %}
+        {% for m in messages %}
+            <div {% if m.tags %} class="{{m.tags}}" {% endif %}><small >{{m}}</small></div>
+        {% endfor %}
+    {% endif %}
+
+    <h1>Welcome, {{ name }}</h1>
+    <div class="d-grid gap-2 col-2 mx-auto">
+        <a  href={% url 'update' %} class="btn btn-primary">Update Profile</a>
+        <a  href={% url 'change-pass' %} class="btn btn-primary">Change Password</a>
+        {% if  user.is_superuser %}
+        <a  href={% url 'book_management:add-books' %} class="btn btn-primary">Add New Books</a>
+        {% endif %}
+        <a href={% url 'book_management:show-wish-list' %} class="btn btn-primary" >Show Wish List</a>
+        <a href={% url 'transaction:show-borrow-book' %} class="btn btn-primary" >All Borrowed Books</a>
+        {% comment %} <a href={% url 'book_management:show-wish-list' %} class="btn btn-primary" >Add Money</a> {% endcomment %}
+    </div>
+
+    <div class="position-absolute top-0 end-0 p-3">
+        <span class="badge bg-secondary">{{ money_count }}</span>
+    </div>
+{% endblock  %}
