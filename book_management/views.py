@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Book,WishList
-from .forms import BookSearchForm
+from .models import Book, WishList
 import user_authentication.urls
 from transaction.models import Borrow
 from django.contrib import messages 
@@ -13,18 +12,17 @@ from django.db.models import Q
 def book_search(request):
     '''search book by book title or genre'''
     if not request.user.is_authenticated: 
-        return redirect('login')   
-    form = BookSearchForm(request.GET)
-    books = Book.objects.all()
-    search_query = None
-    if request.method == 'GET' and form.is_valid():
-        search_query = form.cleaned_data['search_query']
-        if search_query:
-            books = books.filter(Q(title__icontains=search_query) | Q(genre__icontains=search_query))
-    user_borrowed_books = Borrow.objects.filter(user=request.user).values_list('book__isbn', flat=True)
+        return redirect('login') 
+    search_query = request.GET.get('search_query', None)
+    books = None
+    if search_query: # search book by title, genre, author
+        books = Book.objects.filter(Q(title__icontains=search_query) | Q(genre__icontains=search_query) | Q(author__icontains = search_query))
+    user_borrowed_books = Borrow.objects.filter(user=request.user).values_list('book__isbn', flat=True) # if flat = true i get a list of specipic value instead of tuple
+    # print(user_borrowed_books)
     for book in books:
         book.is_already_borrowed = book.isbn in user_borrowed_books # check user already borrowed books for handle in frontend
-    context = {'formse': form, 'books': books, 'search_query': search_query}
+    context = {'books': books}
+    # print(books)
     return render(request, 'book_management/search_book_show.html', context)
 
 

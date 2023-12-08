@@ -1,10 +1,7 @@
+from typing import Any
 from django import forms
 from .models import Book
-
-
-class BookSearchForm(forms.Form):
-    search_query = forms.CharField(label="Search Books",required=False,widget=forms.TextInput(attrs={"placeholder": "Enter book title or genre"}))
-    
+  
 
 class BookForm(forms.ModelForm):
     class Meta:
