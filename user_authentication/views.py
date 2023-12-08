@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .forms import *
 from django.contrib import messages 
-from book_management.views import BookSearchForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .utils import generate_otp, format_email, EmailUser
