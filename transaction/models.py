@@ -21,7 +21,7 @@ class Borrow(models.Model):
         current_date = timezone.now().date()
         days_difference = (current_date - self.return_date.date()).days
 
-        fine_amount = max(0, days_difference * 5)
+        fine_amount = max(0, days_difference * 5) # 5 Taka per day.
 
         return fine_amount
         

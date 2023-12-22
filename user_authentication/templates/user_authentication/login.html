@@ -31,7 +31,7 @@
             {% for fm in form %}
             {{fm.label_tag}} {{fm}} <p style="color: red;">{{fm.errors|striptags}}</p> 
             {% endfor %}
-    </small> <a href="{% url 'send-otp-email' %}"> *forgot password?</a> <br>
+    </small> <a href="{% url 'send-otp-email' %}" class="text-danger"> *forgot password?</a> <br>
     <small class="fw-bold">You have no account?</small> <a href="{% url 'signup' %}">SignUp</a>
     <br>
     <button class="btn btn-warning" type="submit">Submit</button>
