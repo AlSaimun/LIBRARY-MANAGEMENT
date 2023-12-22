@@ -5,9 +5,11 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, SetPasswordForm
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .utils import generate_otp, format_email, EmailUser
+from django.core.cache import cache
 # Create your views here.
 
 def home(request):
+    '''Home page view'''
     if request.user.is_authenticated:
         return render(request,'user_authentication/home.html',{'name':request.user})
     else:
@@ -15,6 +17,7 @@ def home(request):
     
     
 def about(request):
+    '''About page view'''
     if request.user.is_authenticated:
         return render(request,'user_authentication/about.html')
     else:
@@ -22,6 +25,7 @@ def about(request):
     
     
 def rule(request):
+    '''Rules page view'''
     if request.user.is_authenticated:
         return render(request,'user_authentication/rule.html')
     else:
@@ -29,6 +33,7 @@ def rule(request):
         
 
 def signup(request):
+    '''User SignUp view'''
     if not request.user.is_authenticated:
         if request.method == 'POST':
             form = SingUpForm(request.POST)
@@ -45,6 +50,7 @@ def signup(request):
     
     
 def user_login(request):
+    '''User login view'''
     if request.user.is_authenticated:
         return render(request,'user_authentication/profile.html',{'name':request.user}) 
     if request.method == 'POST':
@@ -55,7 +61,8 @@ def user_login(request):
             user = authenticate(username=user_name,password = user_pas)
             if user is not None:
                 login(request,user)
-                print('success')
+                # print(request.session.get('ip', None)) # client ip
+                # print('success')
                 messages.success(request,'Log in successfully')
                 return redirect('profile')
     else:
@@ -65,12 +72,16 @@ def user_login(request):
             
             
 def profile(request):
+    '''Profile page view'''
     if request.user.is_authenticated:
-        return render(request,'user_authentication/profile.html',{'name':request.user}) 
+        login_count = cache.get('count', version=request.user.pk)
+        print("login count :", login_count)
+        return render(request,'user_authentication/profile.html',{'name':request.user, 'login_count': login_count}) 
     else:
         return redirect('login')
 
 def user_logout(request):
+    '''User logOut page view'''
     if request.user.is_authenticated:
         logout(request)
         return redirect('login')
@@ -78,6 +89,7 @@ def user_logout(request):
         return redirect('login')
     
 def update_user_details(request):
+    '''User update information page'''
     if request.method == 'POST':
         form = ChagneUserData(request.POST, instance=request.user)
         if form.is_valid():
@@ -90,6 +102,7 @@ def update_user_details(request):
 
 
 def change_password(request): 
+    '''User password change page view'''
     if not request.user.is_authenticated: 
         return redirect('login')
     if request.method == 'POST': 
@@ -108,6 +121,7 @@ def change_password(request):
 
 
 def forgot_password(request):
+    '''If user forgot password'''
     if request.method == 'POST':
         # email = request.POST.get('email')
         form = EmailForOTPForm(data= request.POST)
@@ -139,6 +153,7 @@ def forgot_password(request):
 
 
 def validateOTP(request):
+    '''OTP validation page which sent in email'''
     if request.method == 'POST':
         username = request.session.get('username') # get username from seassion
         stored_otp = request.session.get('otp')
@@ -156,6 +171,7 @@ def validateOTP(request):
 
 
 def set_new_password(request):
+    '''Set newpassword view'''
     username = request.session.get('username')
     try:
         user = User.objects.get(username=username)

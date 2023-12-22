@@ -95,7 +95,7 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item"  href="{% url 'about' %}">About</a></li>
-                <li><a class="dropdown-item"  href="{% url 'rule' %}">Rule</a></li>
+                <li><a class="dropdown-item"  href="{% url 'rule' %}">Rules</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Contact</a></li>
                 <li><a class="dropdown-item" href="#">Services</a></li>
@@ -106,7 +106,7 @@
           {% if user.is_authenticated %}
           <form class="d-flex ms-auto" method="get" action="{% url 'book_management:book-search' %}">
             {% csrf_token %}
-            <input class="form-control me-2 search-input" type="search" name = "search_query" placeholder="Search Book" aria-label="Search">
+            <input class="form-control me-2 search-input" type="search" name = "search_query" placeholder="Search Book" aria-label="Search" required>
             <button class="btn btn-success txt-white mx-1 btn-sm" type="submit">Search</button>
           </form>
           {% endif %}
