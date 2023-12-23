@@ -42,10 +42,10 @@ A library management system Uuer can login, signup, borrow, search books and ret
     ```bash
     pip install -r requirements.txt
     ```
-5. **Create and Set Up `.env` file: **
+5. **Create and Set Up `.env` file:**
     ```
-    EMAIL_HOST_USER =  ''
-    EMAIL_HOST_PASSWORD = ''
+    EMAIL_HOST_USER =  'example@gmail.com'
+    EMAIL_HOST_PASSWORD = 'examplepassword'
     ```
     NB: It's for send email to user.
 6. **Create account in SSLCOMMERZ Developer site:**
