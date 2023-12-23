@@ -17,7 +17,7 @@ A library management system Uuer can login, signup, borrow, search books and ret
 ## Installation
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/library-management-system.git
+    git clone https://github.com/AlSaimun/LIBRARY-MANAGEMENT.git
     ```
 2. **Create a virtual environment:**
 
