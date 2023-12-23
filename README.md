@@ -22,7 +22,7 @@ A library management system Uuer can login, signup, borrow, search books and ret
 2. **Create a virtual environment:**
 
     ```bash
-    python -m venv venv
+    python -m virtualenv venv
     ```
 3. **Activate the virtual environment:**
 
