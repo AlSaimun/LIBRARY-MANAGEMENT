@@ -1,6 +1,6 @@
 # LIBRARY MANAGEMENT
 `Python 3.12.1` `Django 4.2.6` </br>
-A library management system Uuer can login, signup, borrow, search books and returns books in time. Implemented payment gateway system for pay fine.
+A library management system User can login, signup, borrow, search books and returns books in time. Implemented payment gateway system for pay fine.
 
 ## Features
 - **User Authentication:** User can login, Signup, update user information, recover user account.
